@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
+  #get 'password_resets/new'
+  #get 'password_resets/edit'
+  #get 'sessions/new'
 
   #get 'users/new'
 
@@ -17,13 +19,14 @@ Rails.application.routes.draw do
   
   get 'signup' => 'users#new'
   
-  # resources keyword was not used because session have no model
+  # resources keyword was not used because we prefer to use the nickname "login" and "logout"
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
   resources :users
   resources :account_activations, only: [:edit]
+  resources :password_resets, only: [:new, :edit, :create, :update]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
